@@ -15,29 +15,42 @@
 
 <body>
     <div id="app">
-        <header>
-            <h1 v-text="sitename"></h1>
-            <button v-if="cart.length > 0" v-on:click='showCheckout'> {{cart.length}} <span
+        <!-- Header -->
+        <div class="container-fluid bg-primary">
+            <div class="row">
+                <div class="col-sm-10">
+                    <h1 class="text-white" v-text="sitename"></h1>
+                </div>
+                <div class="col-sm-2 p-2">
+                    <button class="btn btn-danger" v-if="cart.length > 0" v-on:click='showCheckout'> {{cart.length}} <span
                         class="fas fa-cart-plus"></span>Cart
-                    </button> <br>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Header End-->
 
-        </header>
 
-
-        <div class="container">
+        <div class="container-fluid">
             <div class="root">
                 <!-- sorting -->
-                <aside>
-                    <h4>Sort by</h4>
-                    <ul>
+                <aside class="">
+                    <h3 class="h2-responsive bold text-primary">Sort by</h3>
+                    <hr>
+                    <ul class="list-group w-100">
+                        <li class="list-group-item active"><button v-on:click="type = 'subject'">Subject</button></li>
+                        <li class="list-group-item active"><button v-on:click="type = 'price'">Price</button></li>
+                        <li class="list-group-item active"><button v-on:click="type = 'Location'">Location</button></li>
+                    </ul>
+                    <!-- <ul>
                         <li><button v-on:click="type = 'subject'">Subject</button></li>
                         <li><button v-on:click="type = 'price'">Price</button></li>
                         <li><button v-on:click="type = 'Location'">Location</button></li>
-                    </ul>
+                    </ul> -->
                     <br>
-                    <div class="search-wrapper">
-                        <input v-on:input="filteredList" class="form-control" type="text" v-model="search" placeholder="Search title.." />
-                        <label>Search Subject:</label>
+                    <div class="form-group">
+                        <input v-on:input="filteredList" class="form-control border-primary" type="text" v-model="search" placeholder="Search title.." />
+                        <!-- <label>Search Subject:</label> -->
                     </div>
                 </aside>
                 <main>
@@ -51,7 +64,7 @@
                         </div>
 
                         <!-- lessons-->
-                        <div class="lessons">
+                        <!-- <div class="lessons">
                             <div v-for="(lessons, index) in sortedLessons" :key="`lesson--${index}`" class="lessons__item">
                                 <h2>
                                     <p>Subject: {{ lessons.subject }}</p>
@@ -66,13 +79,36 @@
                                 <span v-if="lessons.space">{{'Left '+ lessons.space}}</span>
                                 <span v-else>This lesson is fully booked!</span>
                             </div>
+                        </div> -->
+
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="card" style="width: 18rem;">
+                                        <div v-for="(lessons, index) in sortedLessons" :key="`lesson--${index}`" class="">
+                                            <img v-bind:src="lessons.image" width="250" height="200">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">Location: {{ lessons.location }}</p>
+                                                <p class="card-text">Price: {{ lessons.price }}</p>
+                                                <p class="card-text">Spaces: {{lessons.space}}</p>
+                                                <button class="btn btn-primary" v-on:click='addToCart(lessons)' :disabled="!lessons.space">Add to cart</button>
+                                                <span v-if="lessons.space">{{'Left '+ lessons.space}}</span>
+                                                <span v-else>This lesson is fully booked!</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                     <div v-else>
-                        <div class="container">
+                        <div class="container-fluid">
                             <!-- calculation-->
-                            <div class="title-bar">
-                                <button v-on:click="showCheckout"><span class="fas fa-arrow-left"></span> Previous page</button>
+                            <div class="title-bar p-4">
+                                <button class="btn btn-success " v-on:click="showCheckout"><span class="fas fa-arrow-left"></span> Previous page</button>
                                 <h4>Total Amount: {{total}}</h4>
                             </div>
                             <!-- cart-->
@@ -84,6 +120,23 @@
                                     <div>Location</div>
                                     <div>Price</div>
                                 </div>
+                                <!-- <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="card" style="width: 18rem;">
+                                                    <img v-bind:src="lessons.image" width="250" height="200">
+
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Card title</h5>
+                                                        <p class="card-text">Location: {{ lessons.location }}</p>
+                                                        <p class="card-text">Price: {{ lessons.price }}</p>
+                                                        <p class="card-text">Spaces: {{lessons.space}}</p>
+                                                        <div style="width: auto;"><button v-on:click="removeFromCart(item)" class="fa fa-minus-square" aria-hidden="true"></button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                 <hr style="width: 100%">
                                 <div class="cart__item" v-for="(item, index) in cart" :key="`cart--${index}`">
                                     <div style="width: auto;"><img :src="item.image" alt=""></div>
@@ -97,6 +150,7 @@
                                         List Empty</div>
                                 </div>
                             </div>
+
                             <hr>
                             <div>
                                 <h3>Student Details</h3>
@@ -123,7 +177,6 @@
             </div>
             </main>
         </div>
-    </div>
     </div>
     <script type="text/javascript">
         const webstore = new Vue({

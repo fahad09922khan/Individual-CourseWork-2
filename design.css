@@ -1,50 +1,52 @@
-body{
+body {
     padding: 0;
     margin: 0;
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
-.container{
+.container {
     max-width: 1140px;
     width: 100%;
     margin: 0 auto;
 }
 
-header{
-    background: #3a8cc0;
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: #e8491d 3px solid;
-
+    border-bottom: blue 5px solid;
 }
-.root{
+
+.root {
     display: flex;
 }
-main{
+
+main {
     border-bottom: #e8491d 3px solid;
     width: 80%;
 }
 
-.title-bar{
+.title-bar {
     justify-content: space-between;
     display: flex;
     align-items: center;
 }
-aside{
+
+aside {
     width: 20%;
     padding: 25px 0px;
 }
 
-aside ul{
+aside ul {
     padding: 0;
     margin: 0;
     list-style: outside;
 }
-aside ul li button{
+
+aside ul li button {
     display: block;
     width: 100%;
     padding: 0;
@@ -56,50 +58,58 @@ aside ul li button{
     cursor: pointer;
     padding: 5px;
 }
-aside ul li button:hover{
+
+aside ul li button:hover {
     background-color: rgb(135, 164, 189);
 }
 
-.lessons{
+.lessons {
     display: flex;
     flex-wrap: wrap;
 }
-.lessons__item{
+
+.lessons__item {
     width: 210px;
     background-color: #7691aa;
     padding: 20px 20px;
     margin: 15px;
     border-radius: 10px;
 }
-.lessons__item figure{
+
+.lessons__item figure {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.lessons__item figure img{
+
+.lessons__item figure img {
     width: 100px;
     height: 100px;
 }
-.cart{
+
+.cart {
     display: flex;
-   flex-direction: row;
+    flex-direction: row;
 }
-.cart__item{
+
+.cart__item {
     display: flex;
     align-items: center;
     background-color: #66b0c7;
     margin: 5px 0;
 }
-.cart__item div{
+
+.cart__item div {
     padding: 5px;
     width: 100%;
 }
-.cart__item img{
+
+.cart__item img {
     width: 40px;
     height: 40px;
 }
 
-.cart__item button{
+.cart__item button {
     background-color: #2d598b21;
     width: 30px;
     height: 30px;
@@ -110,11 +120,12 @@ aside ul li button:hover{
     border: none;
     cursor: pointer;
 }
-.cart__item button:hover{
+
+.cart__item button:hover {
     background-color: #ff000034;
 }
 
-form{
+form {
     background-color: #f1f1f1;
     padding: 15px;
     border-radius: 5px;
@@ -123,23 +134,28 @@ form{
     margin: 20px 0;
     flex-direction: column;
 }
-form input{
+
+form input {
     display: block;
     width: 100%;
     padding: 5px;
 }
+
 form input[type="submit"] {
-    text-align:center;
+    text-align: center;
     margin: 10px 0;
 }
-form div{
+
+form div {
     padding: 10px 0;
 }
-button{
+
+button {
     background-color: #7691aa;
     border-radius: 20px;
 }
-button:active{
+
+button:active {
     color: #7691aa;
     background-color: #66b0c7;
 }
