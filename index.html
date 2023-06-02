@@ -82,23 +82,22 @@
                         <!----------------------------------- Cards -------------------- -->
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-4 p-3" v-for="(lessons, index) in sortedLessons" :key="`lesson--${index}`">
                                     <div class="card" style="width: 18rem;">
-                                        <div v-for="(lessons, index) in sortedLessons" :key="`lesson--${index}`" class="">
-                                            <img v-bind:src="lessons.image" width="250" height="200">
-                                            <div class="card-body">
-                                                <h4 class="card-title">Subject: {{ lessons.subject }}</h4>
-                                                <p class="card-text">Location: {{ lessons.location }}</p>
-                                                <p class="card-text">Price: {{ lessons.price }}</p>
-                                                <p class="card-text">Spaces: {{lessons.space}}</p>
-                                                <button class="btn btn-primary" v-on:click='addToCart(lessons)' :disabled="!lessons.space">Add to cart</button>
-                                                <span v-if="lessons.space">{{'Left '+ lessons.space}}</span>
-                                                <span v-else>This lesson is fully booked!</span>
-                                            </div>
+                                        <img v-bind:src="lessons.image" width="250" height="200">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Subject: {{ lessons.subject }}</h4>
+                                            <p class="card-text">Location: {{ lessons.location }}</p>
+                                            <p class="card-text">Price: {{ lessons.price }}</p>
+                                            <p class="card-text">Spaces: {{lessons.space}}</p>
+                                            <button class="btn btn-primary" v-on:click='addToCart(lessons)' :disabled="!lessons.space">Add to cart</button>
+                                            <span v-if="lessons.space">{{'Left '+ lessons.space}}</span>
+                                            <span v-else>This lesson is fully booked!</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- </div> -->
                         </div>
                         <!----------------------------------- Cards  End-------------------- -->
 
@@ -112,20 +111,26 @@
                             </div>
                             <!-- cart-->
                             <h4>Your cart</h4>
-                            <div class="cart">
-                                <div class="cart__item">
+                            <div class="">
+                                <!-- <div class="cart__item">
                                     <div style="width: auto;">Image</div>
                                     <div>Subject</div>
                                     <div>Location</div>
                                     <div>Price</div>
-                                </div>
+                                </div> -->
                                 <hr style="width: 100%">
-                                <div class="cart__item" v-for="(item, index) in cart" :key="`cart--${index}`">
-                                    <div style="width: auto;"><img :src="item.image" alt=""></div>
-                                    <div>{{item.subject}}</div>
-                                    <div>{{item.location}}</div>
-                                    <div>{{item.price}}</div>
-                                    <div style="width: auto;"><button v-on:click="removeFromCart(item)" class="fa fa-minus-square" aria-hidden="true"></button></div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-4" class="cart__item" v-for="(item, index) in cart" :key="`cart--${index}`">
+                                            <div>
+                                                <div style="width: auto;"><img :src="item.image" alt=""></div>
+                                                <div>{{item.subject}}</div>
+                                                <div>{{item.location}}</div>
+                                                <div>{{item.price}}</div>
+                                                <div style="width: auto;"><button v-on:click="removeFromCart(item)" class="fa fa-minus-square" aria-hidden="true"></button></div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div v-if="!cart.length > 0" class="cart__item" style="background-color: transparent; padding: 20px;">
                                     <div style="text-align: center; color: grey; font-size: 20px; font-weight: bold;">
@@ -134,25 +139,38 @@
                             </div>
 
                             <hr>
-                            <div>
+                            <div class="form">
                                 <h3>Student Details</h3>
-                                <div>
+                                <!-- <div>
                                     <label for="name">Your Name</label>
                                     <input v-model="user.name" type="text" required>
+                                </div> -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="name" for="form7Example1">Your Name</label>
+                                    <input v-model="user.name" type="text" id="form7Example1" class="form-control" />
+
+                                    <label class="form-label" for="name" for="form7Example1">Phone Number</label>
+                                    <input v-model="user.number" type="text" id="form7Example1" class="form-control" />
+
+                                    <label for="name" class="form-label" for="form7Example1">User ID</label>
+                                    <input v-model="user.id" type="text" id="form7Example1" class="form-control" />
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <label for="name">Phone Number</label>
                                     <input v-model="user.number" type="tel" required>
-                                </div>
-                                <div>
+                                </div> -->
+
+                                <!-- <div>
                                     <label for="name">User Id</label>
                                     <input v-model="user.id" type="tel" required>
-                                </div>
-                                <div>
+                                </div> -->
+
+                                <!-- <div>
                                     <label for="name">Space</label>
                                     <input v-model="user.space" type="tel" required>
-                                </div>
-                                <input type="submit" @click="submit" value="Checkout">
+                                </div> -->
+                                <!-- <input type="submit" @click="submit" value="Checkout"> -->
+                                <button class="btn btn-Success border-dark" value="Checkout" @click="submit"> Submit </button>
                             </div>
                         </div>
                     </div>
