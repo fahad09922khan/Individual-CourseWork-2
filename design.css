@@ -17,7 +17,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: blue 5px solid;
+    border-bottom: black 5px solid;
 }
 
 .root {
